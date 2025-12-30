@@ -177,18 +177,14 @@ hook.Add("Initialize", "ProjectSovereign_DataLoader", function()
     if GAMEMODE then
         GAMEMODE:DebugLog("Data loader initialized")
         
-        -- Mark modules as they're loaded (this happens after init.lua has loaded them)
+        -- Mark modules as loaded after init.lua has loaded them
         timer.Simple(0.5, function()
-            -- Auto-detect loaded modules based on LOAD_ORDER
+            -- Mark all modules from LOAD_ORDER as loaded
+            -- This happens after init.lua has already loaded them
             for _, phase in ipairs(LOAD_ORDER) do
                 for _, file in ipairs(phase.files) do
-                    -- Check if file exists before marking as loaded
-                    if file.Exists(file, "LUA") then
-                        local moduleName = string.GetFileFromFilename(file)
-                        GAMEMODE:MarkModuleLoaded(moduleName)
-                    else
-                        GAMEMODE:ErrorLog(string.format("Module file not found: %s", file))
-                    end
+                    local moduleName = string.GetFileFromFilename(file)
+                    GAMEMODE:MarkModuleLoaded(moduleName)
                 end
             end
             
