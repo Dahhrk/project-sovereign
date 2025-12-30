@@ -30,7 +30,9 @@ local spawnLocations = {
 -- Get spawn location for a player based on their faction
 function GM:GetPlayerSpawnLocation(ply)
     if not self:IsValidPlayer(ply) then
-        return self:GetConfig("DefaultSpawnLocation"), self:GetConfig("DefaultSpawnAngles")
+        local defaultPos = self.Config and self.Config.DefaultSpawnLocation or Vector(0, 0, 0)
+        local defaultAng = self.Config and self.Config.DefaultSpawnAngles or Angle(0, 0, 0)
+        return defaultPos, defaultAng
     end
     
     local faction = self:GetPlayerFaction(ply)
@@ -47,7 +49,9 @@ function GM:GetPlayerSpawnLocation(ply)
         return spawn:GetPos(), spawn:GetAngles()
     end
     
-    return self:GetConfig("DefaultSpawnLocation"), self:GetConfig("DefaultSpawnAngles")
+    local defaultPos = self.Config and self.Config.DefaultSpawnLocation or Vector(0, 0, 0)
+    local defaultAng = self.Config and self.Config.DefaultSpawnAngles or Angle(0, 0, 0)
+    return defaultPos, defaultAng
 end
 
 -- Set spawn location for a faction

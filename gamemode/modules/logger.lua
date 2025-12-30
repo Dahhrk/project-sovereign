@@ -153,39 +153,18 @@ if SERVER then
     end)
     
     -- Log faction changes
-    local oldSetPlayerFaction = GAMEMODE.SetPlayerFaction
-    GAMEMODE.SetPlayerFaction = function(self, ply, faction, rank)
-        local result, msg = oldSetPlayerFaction(self, ply, faction, rank)
-        
-        if result then
-            self:LogFactionAction(string.format("Faction changed to %s (Rank: %s)", faction, rank or "default"), ply)
-        end
-        
-        return result, msg
-    end
+    hook.Add("ProjectSovereign_FactionChanged", "ProjectSovereign_LogFactionChange", function(ply, faction, rank)
+        GAMEMODE:LogFactionAction(string.format("Faction changed to %s (Rank: %s)", faction, rank or "default"), ply)
+    end)
     
     -- Log whitelist changes
-    local oldAddToWhitelist = GAMEMODE.AddToWhitelist
-    GAMEMODE.AddToWhitelist = function(self, ply, faction, rank)
-        local result, msg = oldAddToWhitelist(self, ply, faction, rank)
-        
-        if result then
-            self:LogAdminAction(string.format("Added whitelist: %s - %s (Rank: %s)", ply:Nick(), faction, rank), nil)
-        end
-        
-        return result, msg
-    end
+    hook.Add("ProjectSovereign_WhitelistAdded", "ProjectSovereign_LogWhitelistAdd", function(ply, faction, rank)
+        GAMEMODE:LogAdminAction(string.format("Added whitelist: %s - %s (Rank: %s)", ply:Nick(), faction, rank), nil)
+    end)
     
-    local oldRemoveFromWhitelist = GAMEMODE.RemoveFromWhitelist
-    GAMEMODE.RemoveFromWhitelist = function(self, ply, faction)
-        local result, msg = oldRemoveFromWhitelist(self, ply, faction)
-        
-        if result then
-            self:LogAdminAction(string.format("Removed whitelist: %s - %s", ply:Nick(), faction), nil)
-        end
-        
-        return result, msg
-    end
+    hook.Add("ProjectSovereign_WhitelistRemoved", "ProjectSovereign_LogWhitelistRemove", function(ply, faction)
+        GAMEMODE:LogAdminAction(string.format("Removed whitelist: %s - %s", ply:Nick(), faction), nil)
+    end)
     
     -- Log deaths
     hook.Add("PlayerDeath", "ProjectSovereign_LogDeaths", function(victim, inflictor, attacker)

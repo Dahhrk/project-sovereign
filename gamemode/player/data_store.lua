@@ -221,7 +221,8 @@ if SERVER then
     end)
     
     -- Auto-save data stores periodically
-    timer.Create("ProjectSovereign_DataStoreAutoSave", 600, 0, function()
+    local autoSaveInterval = 600 -- Can be made configurable
+    timer.Create("ProjectSovereign_DataStoreAutoSave", autoSaveInterval, 0, function()
         for _, ply in ipairs(player.GetAll()) do
             GAMEMODE:SaveDataStore(ply)
         end

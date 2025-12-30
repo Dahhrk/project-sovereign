@@ -43,6 +43,9 @@ function GM:AddToWhitelist(ply, faction, rank)
     
     self:Log(string.format("Added %s (%s) to %s whitelist as %s", ply:Nick(), steamID, faction, rank))
     
+    -- Call hook for logging
+    hook.Run("ProjectSovereign_WhitelistAdded", ply, faction, rank)
+    
     -- Save whitelist data
     self:SaveWhitelist()
     
@@ -80,6 +83,9 @@ function GM:RemoveFromWhitelist(ply, faction)
     end
     
     self:Log(string.format("Removed %s (%s) from %s whitelist", ply:Nick(), steamID, faction))
+    
+    -- Call hook for logging
+    hook.Run("ProjectSovereign_WhitelistRemoved", ply, faction)
     
     -- Save whitelist data
     self:SaveWhitelist()
@@ -140,6 +146,9 @@ function GM:SetPlayerFaction(ply, faction, rank)
     ply.Rank = rank
     
     self:Log(string.format("Set %s's faction to %s (Rank: %s)", ply:Nick(), faction, rank))
+    
+    -- Call hook for logging
+    hook.Run("ProjectSovereign_FactionChanged", ply, faction, rank)
     
     -- Apply loadout for the new faction/rank
     if SERVER then

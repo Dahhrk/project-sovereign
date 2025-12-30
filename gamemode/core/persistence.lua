@@ -130,19 +130,12 @@ end
 
 -- Auto-save player data periodically
 if SERVER then
-    local nextAutoSave = CurTime()
-    
-    hook.Add("Think", "ProjectSovereign_AutoSave", function()
-        local interval = GAMEMODE:GetConfig("AutoSaveInterval")
-        
-        if CurTime() >= nextAutoSave then
-            for _, ply in ipairs(player.GetAll()) do
-                GAMEMODE:SavePlayerData(ply)
-            end
-            
-            GAMEMODE:DebugLog("Auto-saved all player data")
-            nextAutoSave = CurTime() + interval
+    timer.Create("ProjectSovereign_AutoSave", GAMEMODE:GetConfig("AutoSaveInterval") or 300, 0, function()
+        for _, ply in ipairs(player.GetAll()) do
+            GAMEMODE:SavePlayerData(ply)
         end
+        
+        GAMEMODE:DebugLog("Auto-saved all player data")
     end)
     
     -- Save on disconnect

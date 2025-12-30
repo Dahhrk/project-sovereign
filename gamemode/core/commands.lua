@@ -15,9 +15,9 @@ function GM:RegisterCommand(name, callback, adminOnly, description)
     }
 end
 
--- Process chat command
+    -- Process chat command
 local function ProcessCommand(ply, text)
-    if not string.sub(text, 1, 1) == "/" then
+    if string.sub(text, 1, 1) ~= "/" then
         return
     end
     

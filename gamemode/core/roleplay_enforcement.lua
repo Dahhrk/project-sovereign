@@ -182,10 +182,10 @@ end
 
 -- Server-side hooks
 if SERVER then
-    -- Apply loadout on spawn
+    -- Apply loadout on spawn (prevents default loadout)
     hook.Add("PlayerLoadout", "ProjectSovereign_ApplyLoadout", function(ply)
         GAMEMODE:ApplyLoadout(ply)
-        return true -- Prevent default loadout
+        return true -- Prevent default loadout from being applied
     end)
     
     -- Enforce faction roles on spawn

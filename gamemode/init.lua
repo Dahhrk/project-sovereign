@@ -67,9 +67,8 @@ local function LoadDirectory(dir, recursive)
             local filePath = dir .. "/" .. fileName
             local realm = IncludeFile(filePath)
             
-            if GM.Config and GM.Config.VerboseLogging then
-                print(string.format("  [%s] Loaded: %s", realm, filePath))
-            end
+            -- Basic logging for all file loads (verbose logging handled in config)
+            print(string.format("  [%s] Loaded: %s", realm, filePath))
         end
     end
     
