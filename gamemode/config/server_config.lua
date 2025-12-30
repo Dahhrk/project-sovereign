@@ -8,7 +8,7 @@ GM.Config = GM.Config or {}
 GM.Config = {
     -- Gamemode Information
     GamemodeName = "Project Sovereign",
-    GamemodeVersion = "1.0.0 - Phase 1",
+    GamemodeVersion = "2.0.0 - Phase 2",
     GamemodeAuthor = "Dahhrk",
     
     -- Server Settings
@@ -22,6 +22,41 @@ GM.Config = {
     -- Economy Settings
     StartingCredits = 5000,
     MaxCredits = 999999999,
+    TransactionTaxRate = 0.05, -- 5% tax on transfers
+    PurchaseTaxRate = 0.10, -- 10% tax on purchases
+    TaxEnabled = true,
+    
+    -- Faction Settings
+    StartingFactionBudget = 50000,
+    
+    -- Inventory Settings
+    DefaultInventoryWeight = 100, -- Default max weight in kg
+    
+    -- Mission Settings
+    MissionExpirationTime = 1800, -- 30 minutes in seconds
+    DefaultMissionRewards = {
+        Combat = {credits = 1000, reputation = 50},
+        Economy = {credits = 1500, reputation = 30},
+        Exploration = {credits = 800, reputation = 40}
+    },
+    
+    -- Event Settings
+    EventCheckInterval = 60, -- Check for events every minute
+    
+    -- Reputation Settings
+    ReputationMin = -10000,
+    ReputationMax = 10000,
+    
+    -- Progression Settings
+    SkillPointsPerLevel = 1,
+    SkillPointsPerPromotion = 1,
+    
+    -- Analytics Settings
+    AnalyticsUpdateInterval = 300, -- Update analytics every 5 minutes
+    
+    -- Auto-Moderation Settings
+    AutoModEnabled = true,
+    MaxOffenseHistory = 10, -- Keep last 10 offenses per rule
     
     -- Spawn Settings
     DefaultSpawnLocation = Vector(0, 0, 0),

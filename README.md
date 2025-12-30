@@ -19,7 +19,25 @@ The foundational roleplay systems have been implemented, including:
 - **Roleplay Enforcement**: Automatic faction loadouts and role assignments
 
 **Lines of Code**: ~2,700  
-**Total Files**: 14 new Lua files + 1 init.lua
+**Total Files**: 14 Lua files
+
+### Phase 2 - Advanced Systems ✅ COMPLETE
+
+Extended systems for deep gameplay mechanics:
+
+- **Advanced Economy**: Player marketplace, faction budgets, dynamic taxes
+- **Mission System**: Dynamic missions (Combat, Economy, Exploration) with rewards
+- **Event Scheduler**: Time-based events with recurring support
+- **Inventory System**: Weight-based inventories with 7 item types
+- **Crafting System**: 6 recipes including faction-specific crafts
+- **Reputation System**: Per-faction reputation tracking with 10 levels
+- **Progression System**: Skill trees (Combat & Economy) with 10 skills total
+- **Admin Tools**: Promote/demote, auto-moderation with 4 rule types
+- **Analytics**: Real-time server statistics and faction power tracking
+
+**Phase 2 Lines of Code**: ~8,500+  
+**Phase 2 Files**: 11 new modules  
+**Total Commands**: 60+
 
 ## Quick Start
 
@@ -35,10 +53,13 @@ The foundational roleplay systems have been implemented, including:
 4. Players can check commands with `/help`
 
 ### Documentation
-- **[Phase 1 Documentation](PHASE1_DOCUMENTATION.md)** - Complete system documentation
+- **[Phase 1 Documentation](PHASE1_DOCUMENTATION.md)** - Core system documentation
+- **[Phase 2 Documentation](PHASE2_DOCUMENTATION.md)** - Advanced systems documentation
 - **[Commands Reference](COMMANDS.md)** - All available commands and usage
 
 ## Features
+
+### Phase 1 - Core Systems
 
 ### Faction System
 - 5 unique factions with distinct ranks and roles
@@ -118,24 +139,43 @@ gamemode/
 
 ### Data Storage
 All gamemode data is stored in `garrysmod/data/project_sovereign/`:
+
+**Phase 1**:
 - `whitelist.txt` - Faction whitelists
 - `players/` - Individual player save files
 - `datastore/` - Extended player data
 - `logs/` - Event logs by date
 
+**Phase 2**:
+- `marketplace.txt` - Marketplace listings
+- `faction_budgets.txt` - Faction budgets
+- `missions.txt` - Mission state
+- `events.txt` - Scheduled events
+- `inventories/` - Player inventories
+- `reputation/` - Player reputation
+- `skills/` - Player skills
+- `offenses.txt` - Auto-mod offense records
+
 ## Configuration
 
 Edit `gamemode/config/server_config.lua` to customize:
-- Starting credits amount
-- Auto-save interval
+- Starting credits and faction budgets
+- Tax rates (transaction, purchase)
+- Auto-save intervals
 - Spawn protection duration
-- Friendly fire settings
-- PvP rules
+- Mission expiration times
+- Inventory weight limits
+- Analytics update frequency
+- Friendly fire and PvP rules
 - Logging options
 
 ## Roadmap
 
 ### Future Phases
+- [ ] Phase 3: Territory Control & Faction Warfare
+- [ ] Phase 4: Custom UI/HUD Systems
+- [ ] Phase 5: Fleet & Vehicle Systems
+- [ ] Phase 6: Planetary Control & Large-Scale Warfare
 - [ ] Phase 2: Advanced Economy (shops, jobs, economy balancing)
 - [ ] Phase 3: Territory Control System
 - [ ] Phase 4: Custom UI/HUD
@@ -153,6 +193,6 @@ See [LICENSE](LICENSE) for details.
 
 ---
 
-**Version**: 1.0.0 - Phase 1  
+**Version**: 2.0.0 - Phase 2  
 **Author**: Dahhrk  
 **Engine**: Garry's Mod (Source Engine)
