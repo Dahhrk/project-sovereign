@@ -182,8 +182,13 @@ hook.Add("Initialize", "ProjectSovereign_DataLoader", function()
             -- Auto-detect loaded modules based on LOAD_ORDER
             for _, phase in ipairs(LOAD_ORDER) do
                 for _, file in ipairs(phase.files) do
-                    local moduleName = string.GetFileFromFilename(file)
-                    GAMEMODE:MarkModuleLoaded(moduleName)
+                    -- Check if file exists before marking as loaded
+                    if file.Exists(file, "LUA") then
+                        local moduleName = string.GetFileFromFilename(file)
+                        GAMEMODE:MarkModuleLoaded(moduleName)
+                    else
+                        GAMEMODE:ErrorLog(string.format("Module file not found: %s", file))
+                    end
                 end
             end
             

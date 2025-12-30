@@ -20,9 +20,6 @@ end
 
 hook.Add("Initialize", "ProjectSovereign_ClientInit", InitializeClient)
 
--- Receive notification from server
-net.Receive = net.Receive or function() end
-
 -- Client-side notification display
 function GM:ClientNotify(message, notifyType, duration)
     notifyType = notifyType or NOTIFY_GENERIC

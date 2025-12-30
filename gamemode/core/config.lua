@@ -58,7 +58,7 @@ function GM:ValidateConfig()
     end
     
     if config.AutoSaveInterval and config.AutoSaveInterval < 60 then
-        self:Log("Warning: AutoSaveInterval is very low (< 60 seconds)", "WARN")
+        self:Log("Warning: AutoSaveInterval is very low (< 60 seconds)", "WARNING")
     end
     
     if config.SpawnProtectionTime and config.SpawnProtectionTime < 0 then

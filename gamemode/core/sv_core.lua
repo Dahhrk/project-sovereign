@@ -179,7 +179,10 @@ GM:RegisterCommand("kick", function(ply, args)
         return
     end
     
-    local reason = table.concat(args, " ", 2) or "Kicked by admin"
+    local reason = table.concat(args, " ", 2)
+    if reason == "" then
+        reason = "Kicked by admin"
+    end
     
     GAMEMODE:NotifyAll(string.format("%s was kicked: %s", target:Nick(), reason), NOTIFY_GENERIC)
     GAMEMODE:LogAdminAction(string.format("Kicked %s: %s", target:Nick(), reason), ply)
