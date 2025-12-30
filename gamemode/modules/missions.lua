@@ -325,10 +325,11 @@ function GM:CompleteMission(ply, missionID)
     end
     
     if mission.rewards.reputation then
-        -- Reputation system will be added in next section
-        -- For now, just log it
-        self:Log(string.format("Mission awarded %d reputation to %s", 
-            mission.rewards.reputation, ply:Nick()))
+        -- Award reputation to player's faction
+        local faction = self:GetPlayerFaction(ply)
+        if faction then
+            self:AwardMissionReputation(ply, faction, mission.rewards.reputation)
+        end
     end
     
     -- Move to completed
