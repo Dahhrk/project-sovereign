@@ -1,6 +1,12 @@
-# Project Sovereign - Phase 1 Commands Reference
+# Project Sovereign - Complete Commands Reference
 
-## Player Commands
+This document lists all commands for Phases 1-10 of Project Sovereign.
+
+---
+
+## Phase 1 & 2 Commands
+
+### Player Commands
 Commands that all players can use.
 
 | Command | Arguments | Description |
@@ -12,10 +18,7 @@ Commands that all players can use.
 | `/preferences` | None | View your preferences |
 | `/achievements` | None | View your unlocked achievements |
 
-## Admin Commands
-Commands that require admin permissions.
-
-### Faction Management
+### Admin Commands - Faction Management
 | Command | Arguments | Description |
 |---------|-----------|-------------|
 | `/addwhitelist` | `<player> <faction> <rank>` | Add a player to a faction whitelist with specified rank |
@@ -23,14 +26,14 @@ Commands that require admin permissions.
 | `/setfaction` | `<player> <faction> [rank]` | Set a player's active faction (and optionally rank) |
 | `/forcerank` | `<player> <rank>` | Force set a player's rank in their current faction |
 
-### Economy Management
+### Admin Commands - Economy Management
 | Command | Arguments | Description |
 |---------|-----------|-------------|
 | `/givecredits` | `<player> <amount>` | Give credits to a player (creates money) |
 | `/setcredits` | `<player> <amount>` | Set a player's credits to exact amount |
 | `/checkbalance` | `<player>` | Check another player's credit balance |
 
-### Player Management
+### Admin Commands - Player Management
 | Command | Arguments | Description |
 |---------|-----------|-------------|
 | `/debugplayer` | `[player]` | Display detailed debug info about a player |
@@ -38,15 +41,154 @@ Commands that require admin permissions.
 | `/setspawn` | `<faction>` | Set spawn location for a faction (stand at desired location) |
 | `/resetstats` | `[player]` | Reset a player's combat statistics |
 
-### Logging & Debug
+### Admin Commands - Logging & Debug
 | Command | Arguments | Description |
 |---------|-----------|-------------|
 | `/viewlogs` | `[count]` | View recent log entries (default: 10, max: 50) |
 | `/clearlogs` | None | Clear the log queue |
 
-## Command Examples
+---
 
-### Setting up a new player:
+## Phase 3 Commands - Territory & Base Upgrades
+
+### Territory Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `ps_territories` | None | View all territory status and ownership |
+| `ps_captureinfo` | None | View active territory capture progress |
+
+### Base Upgrade Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `ps_baseinfo` | None | View your faction's base information and upgrades |
+| `ps_upgrades` | None | View available base upgrades |
+| `ps_purchaseupgrade` | `<upgradeId>` | Purchase base upgrade (admin/faction leader) |
+
+---
+
+## Phase 4 Commands - Galaxy & Dynamic Events
+
+### Galaxy Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `ps_galaxy` | None | View galaxy overview and statistics |
+| `ps_sectors` | None | List all galaxy sectors |
+| `ps_sectorinfo` | `<sectorId>` | View detailed sector information |
+
+### Dynamic Events Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `ps_activeevents` | None | View all active dynamic events |
+| `ps_joinevent` | `<eventId>` | Join and participate in an event |
+| `ps_completeevent` | `<eventId>` | Complete event and claim rewards |
+| `ps_spawnevent` | `<eventType> <sectorId>` | Spawn dynamic event (admin) |
+
+---
+
+## Phase 5 Commands - Businesses & Diplomacy
+
+### Business Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `ps_businesses` | None | View available business types and costs |
+| `ps_buybusiness` | `<businessType>` | Purchase a business |
+| `ps_mybusinesses` | None | View your owned businesses |
+| `ps_upgradebusiness` | `<businessId>` | Upgrade a business level |
+| `ps_collectincome` | None | Collect pending offline income |
+
+### Diplomacy Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `ps_relations` | None | View your faction's diplomatic relations |
+| `ps_proposealliance` | `<faction>` | Propose alliance with another faction (admin) |
+| `ps_declarewar` | `<faction> [reason]` | Declare war on another faction (admin) |
+| `ps_wars` | None | View all active wars and casualties |
+
+---
+
+## Phase 6 Commands - Player-Created Content
+
+### Content Creation Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `ps_createfaction` | `<name> [description]` | Create custom faction (50k cost) |
+| `ps_createmission` | `<name> <description>` | Create custom mission (5k cost) |
+| `ps_createevent` | `<name> <description>` | Create custom event (10k cost) |
+| `ps_createbase` | `[name]` | Create custom base (25k cost) |
+| `ps_mycontent` | None | View all your created content |
+| `ps_approvecontent` | `<type> <id>` | Approve player content (admin) |
+
+---
+
+## Phase 7 Commands - NPC Systems
+
+### NPC Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `ps_npcfactions` | None | View all NPC factions and their stats |
+| `ps_npcconflicts` | None | View active NPC faction conflicts |
+| `ps_npcinfo` | `<factionId>` | View detailed NPC faction information |
+
+---
+
+## Phase 8 Commands - Seasonal Content
+
+### Season Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `ps_season` | None | View current season information |
+| `ps_seasonprogress` | None | View your seasonal challenge progress |
+| `ps_seasonleaderboard` | None | View seasonal leaderboard (top 10) |
+| `ps_startseason` | None | Start new season (admin) |
+| `ps_endseason` | None | End current season (admin) |
+
+---
+
+## Phase 9 Commands - Cosmetics
+
+### Cosmetic Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `ps_shop` | `[category]` | View cosmetic shop items |
+| `ps_buycosmetic` | `<itemId>` | Purchase cosmetic item |
+| `ps_equipcosmetic` | `<itemId> [slot]` | Equip cosmetic to slot |
+| `ps_unequipcosmetic` | `<slot>` | Unequip cosmetic from slot |
+| `ps_mycosmetics` | None | View owned and equipped cosmetics |
+| `ps_customizefaction` | `<type> <data>` | Customize faction appearance (admin) |
+
+---
+
+## Phase 10 Commands - Ecosystem
+
+### Ecosystem Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `ps_leaderboard` | `[type]` | View leaderboard (wealth/kills/reputation/businesses/territories) |
+| `ps_webapi` | None | Export web API data (admin) |
+| `ps_exportstructure` | None | Export gamemode structure for modding (admin) |
+| `ps_createmodtemplate` | `<modName>` | Create modding template (admin) |
+| `ps_transferserver` | `<serverId>` | Request cross-server transfer |
+| `ps_serverstats` | None | View server statistics |
+
+---
+
+## Command Categories Summary
+
+**Total Commands**: 100+
+
+- **Phase 1-2**: ~60 commands
+- **Phase 3**: 5 commands
+- **Phase 4**: 7 commands
+- **Phase 5**: 9 commands
+- **Phase 6**: 6 commands
+- **Phase 7**: 3 commands
+- **Phase 8**: 5 commands
+- **Phase 9**: 6 commands
+- **Phase 10**: 6 commands
+
+---
+
+## Command Examples
 ```
 /addwhitelist John Republic Private
 /setfaction John Republic
