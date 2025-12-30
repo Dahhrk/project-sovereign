@@ -134,3 +134,118 @@ When a command requires `<player>`, you can specify the player using:
 - **Friendly Fire**: Disabled
 - **PvP**: Enabled (between hostile factions)
 - **Whitelist Enforcement**: Enabled
+
+---
+
+# Phase 2 Commands
+
+## Advanced Economy
+
+### Marketplace Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `/marketplace` | None | View all active marketplace listings |
+| `/mylistings` | None | View your active listings |
+| `/listitem` | `<item> <price> [description]` | List an item for sale on the marketplace |
+| `/buyitem` | `<listingID>` | Purchase an item from the marketplace |
+| `/cancelitem` | `<listingID>` | Cancel one of your marketplace listings |
+
+### Faction Budget Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `/factionbalance` | None | Check your faction's budget |
+| `/factiondeposit` | `<amount>` | Deposit credits to your faction's budget |
+| `/factionwithdraw` | `<amount>` | Withdraw credits from faction budget (requires permission) |
+| `/factiontransactions` | None | View your faction's recent transactions |
+| `/setfactionbudget` | `<faction> <amount>` | **[ADMIN]** Set a faction's budget |
+
+### Tax Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `/taxrates` | None | View current transaction and purchase tax rates |
+| `/settaxrate` | `<type> <rate>` | **[ADMIN]** Set tax rate (type: transaction or purchase, rate: 0.0-1.0) |
+| `/toggletaxes` | None | **[ADMIN]** Enable or disable economy taxes |
+
+## Missions and Events
+
+### Mission Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `/missions` | None | View available missions |
+| `/acceptmission` | `<missionID>` | Accept an available mission |
+| `/checkmission` | None | View your active mission progress |
+| `/abandonmission` | None | Abandon your current mission |
+| `/generatemissions` | `[count]` | **[ADMIN]** Generate new random missions (default: 5, max: 20) |
+
+### Event Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `/events` | None | View active and upcoming events |
+| `/scheduleevent` | `<type> <minutes_from_now> <duration_minutes> [description]` | **[ADMIN]** Schedule a one-time event |
+| `/schedulerecurring` | `<type> <minutes_from_now> <duration_minutes> <interval_hours> [description]` | **[ADMIN]** Schedule a recurring event |
+| `/cancelevent` | `<eventID>` | **[ADMIN]** Cancel a scheduled or active event |
+| `/startevent` | `<eventID>` | **[ADMIN]** Manually start a scheduled event |
+| `/endevent` | `<eventID>` | **[ADMIN]** Manually end an active event |
+
+## Inventory and Crafting
+
+### Inventory Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `/inventory` | None | View your inventory and weight |
+| `/giveitem` | `<player> <item> [quantity]` | Give an item to another player (admins can spawn items) |
+| `/additem` | `<player> <item> [quantity]` | **[ADMIN]** Add an item to a player's inventory |
+| `/removeitem` | `<player> <item> [quantity]` | **[ADMIN]** Remove an item from a player's inventory |
+| `/listitems` | None | View all available items with details |
+
+### Crafting Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `/recipes` | `[tree]` | View available crafting recipes |
+| `/craft` | `<recipeID>` | Craft an item using a recipe |
+| `/recipeinfo` | `<recipeID>` | View detailed information about a recipe |
+
+## Reputation and Progression
+
+### Reputation Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `/reputation` | None | View your reputation with all factions |
+| `/reputationcheck` | `[faction]` | Check your reputation with a specific faction |
+| `/setreputation` | `<player> <faction> <amount>` | **[ADMIN]** Set a player's reputation with a faction |
+| `/addreputation` | `<player> <faction> <amount>` | **[ADMIN]** Add reputation to a player for a faction |
+
+### Progression Commands
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `/skills` | `[tree]` | View a skill tree (Combat or Economy) |
+| `/unlockskill` | `<tree> <skillID>` | Unlock or level up a skill |
+| `/resetskills` | None | Reset all your skills and refund skill points |
+| `/giveskillpoints` | `<player> <points>` | **[ADMIN]** Give skill points to a player |
+
+## Admin and Moderation
+
+### Rank Management
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `/promote` | `<player>` | **[ADMIN]** Promote a player to the next rank in their faction |
+| `/demote` | `<player>` | **[ADMIN]** Demote a player to the previous rank in their faction |
+
+### Auto-Moderation
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `/warn` | `<player> <rule> [reason]` | **[ADMIN]** Warn a player for rule violation |
+| `/offenses` | `<player>` | **[ADMIN]** View a player's recorded offenses |
+| `/clearoffenses` | `<player> [rule]` | **[ADMIN]** Clear a player's offenses |
+
+### Analytics
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `/analytics` | None | **[ADMIN]** View comprehensive server analytics |
+| `/factionpower` | None | View faction power rankings |
+| `/wealthdistribution` | None | **[ADMIN]** View wealth distribution statistics |
+
+---
+
+**Phase 2 Total Commands**: 40+  
+**Version**: 2.0.0 - Phase 2
