@@ -1,1 +1,1 @@
-Scripts to manage server and player-based Gamemode hooks
+-- Core hooks for server-wide event management

@@ -1,0 +1,1 @@
+-- Player system scaffold for handling persistence, roles, and data

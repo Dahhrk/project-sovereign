@@ -1,1 +1,1 @@
--- Configuration file for global constants
+-- Configuration file for centralized constants and global toggles

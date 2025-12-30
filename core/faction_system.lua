@@ -1,0 +1,1 @@
+-- Faction system scaffold for managing factions and ranks
