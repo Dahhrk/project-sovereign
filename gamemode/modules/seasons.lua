@@ -235,10 +235,8 @@ if SERVER then
             end
         end
         
-        local newTier = 0
-        if completedChallenges >= 1 then newTier = 1 end
-        if completedChallenges >= 2 then newTier = 2 end
-        if completedChallenges >= 3 then newTier = 3 end
+        -- Calculate tier based on completed challenges (simplified)
+        local newTier = math.min(completedChallenges, 3)
         
         if newTier > progress.tier then
             progress.tier = newTier

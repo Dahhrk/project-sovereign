@@ -105,8 +105,8 @@ if SERVER then
             self:SaveTerritoryData()
         end
         
-        -- Start territory update timer
-        timer.Create("TerritoryUpdate", 1, 0, function()
+        -- Start territory update timer (5 seconds for better performance)
+        timer.Create("TerritoryUpdate", 5, 0, function()
             self:UpdateTerritories()
         end)
         
@@ -167,7 +167,8 @@ if SERVER then
                         
                         local capture = self.TerritoryData.captureProgress[territoryId]
                         if capture.faction == dominantFaction then
-                            capture.progress = capture.progress + (1 / CONFIG.CaptureTime)
+                            -- Adjusted for 5-second update interval
+                            capture.progress = capture.progress + (5 / CONFIG.CaptureTime)
                             
                             -- Check if captured
                             if capture.progress >= 1 then
