@@ -264,3 +264,140 @@ GM:RegisterCommand("help", function(ply, args)
         end
     end
 end, false, "Display available commands")
+
+-- Promote player command (admin)
+GM:RegisterCommand("promote", function(ply, args)
+    if #args < 1 then
+        GAMEMODE:Notify(ply, "Usage: /promote <player>", NOTIFY_ERROR)
+        return
+    end
+    
+    local target = GAMEMODE:FindPlayer(args[1])
+    if not target then
+        GAMEMODE:Notify(ply, "Player not found: " .. args[1], NOTIFY_ERROR)
+        return
+    end
+    
+    local faction = GAMEMODE:GetPlayerFaction(target)
+    if not faction then
+        GAMEMODE:Notify(ply, "Player is not in a faction", NOTIFY_ERROR)
+        return
+    end
+    
+    local currentRank = GAMEMODE:GetPlayerRank(target)
+    if not currentRank then
+        GAMEMODE:Notify(ply, "Player has no rank", NOTIFY_ERROR)
+        return
+    end
+    
+    -- Get ranks for faction
+    local factionData = GAMEMODE.Factions and GAMEMODE.Factions[faction]
+    if not factionData or not factionData.ranks then
+        GAMEMODE:Notify(ply, "Invalid faction data", NOTIFY_ERROR)
+        return
+    end
+    
+    -- Find current rank index
+    local currentIndex = 0
+    for i, rank in ipairs(factionData.ranks) do
+        if rank == currentRank then
+            currentIndex = i
+            break
+        end
+    end
+    
+    if currentIndex == 0 then
+        GAMEMODE:Notify(ply, "Could not find current rank in faction", NOTIFY_ERROR)
+        return
+    end
+    
+    -- Check if already at max rank
+    if currentIndex >= #factionData.ranks then
+        GAMEMODE:Notify(ply, string.format("%s is already at max rank (%s)", target:Nick(), currentRank), NOTIFY_ERROR)
+        return
+    end
+    
+    -- Promote to next rank
+    local newRank = factionData.ranks[currentIndex + 1]
+    
+    local success, msg = GAMEMODE:SetPlayerFaction(target, faction, newRank)
+    
+    if success then
+        GAMEMODE:Notify(ply, string.format("Promoted %s from %s to %s", target:Nick(), currentRank, newRank), NOTIFY_GENERIC)
+        GAMEMODE:Notify(target, string.format("You have been promoted to %s!", newRank), NOTIFY_HINT)
+        GAMEMODE:NotifyAll(string.format("%s has been promoted to %s", target:Nick(), newRank), NOTIFY_GENERIC)
+        GAMEMODE:Log(string.format("%s promoted %s from %s to %s", ply:Nick(), target:Nick(), currentRank, newRank))
+        
+        -- Award skill points for promotion
+        GAMEMODE:AwardSkillPoints(target, 1)
+    else
+        GAMEMODE:Notify(ply, "Error: " .. msg, NOTIFY_ERROR)
+    end
+end, true, "Promote a player to the next rank")
+
+-- Demote player command (admin)
+GM:RegisterCommand("demote", function(ply, args)
+    if #args < 1 then
+        GAMEMODE:Notify(ply, "Usage: /demote <player>", NOTIFY_ERROR)
+        return
+    end
+    
+    local target = GAMEMODE:FindPlayer(args[1])
+    if not target then
+        GAMEMODE:Notify(ply, "Player not found: " .. args[1], NOTIFY_ERROR)
+        return
+    end
+    
+    local faction = GAMEMODE:GetPlayerFaction(target)
+    if not faction then
+        GAMEMODE:Notify(ply, "Player is not in a faction", NOTIFY_ERROR)
+        return
+    end
+    
+    local currentRank = GAMEMODE:GetPlayerRank(target)
+    if not currentRank then
+        GAMEMODE:Notify(ply, "Player has no rank", NOTIFY_ERROR)
+        return
+    end
+    
+    -- Get ranks for faction
+    local factionData = GAMEMODE.Factions and GAMEMODE.Factions[faction]
+    if not factionData or not factionData.ranks then
+        GAMEMODE:Notify(ply, "Invalid faction data", NOTIFY_ERROR)
+        return
+    end
+    
+    -- Find current rank index
+    local currentIndex = 0
+    for i, rank in ipairs(factionData.ranks) do
+        if rank == currentRank then
+            currentIndex = i
+            break
+        end
+    end
+    
+    if currentIndex == 0 then
+        GAMEMODE:Notify(ply, "Could not find current rank in faction", NOTIFY_ERROR)
+        return
+    end
+    
+    -- Check if already at lowest rank
+    if currentIndex <= 1 then
+        GAMEMODE:Notify(ply, string.format("%s is already at lowest rank (%s)", target:Nick(), currentRank), NOTIFY_ERROR)
+        return
+    end
+    
+    -- Demote to previous rank
+    local newRank = factionData.ranks[currentIndex - 1]
+    
+    local success, msg = GAMEMODE:SetPlayerFaction(target, faction, newRank)
+    
+    if success then
+        GAMEMODE:Notify(ply, string.format("Demoted %s from %s to %s", target:Nick(), currentRank, newRank), NOTIFY_GENERIC)
+        GAMEMODE:Notify(target, string.format("You have been demoted to %s", newRank), NOTIFY_ERROR)
+        GAMEMODE:Log(string.format("%s demoted %s from %s to %s", ply:Nick(), target:Nick(), currentRank, newRank))
+    else
+        GAMEMODE:Notify(ply, "Error: " .. msg, NOTIFY_ERROR)
+    end
+end, true, "Demote a player to the previous rank")
+
