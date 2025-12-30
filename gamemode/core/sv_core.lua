@@ -35,15 +35,9 @@ hook.Add("Initialize", "ProjectSovereign_ServerInit", InitializeServer)
 hook.Add("PlayerInitialSpawn", "ProjectSovereign_InitialSpawn", function(ply)
     GAMEMODE:Log(string.format("Player connecting: %s (%s)", ply:Nick(), ply:SteamID()))
     
-    -- Load player data
-    timer.Simple(0.5, function()
+    -- Enforce faction role and apply loadout
+    timer.Simple(1.0, function()
         if IsValid(ply) then
-            -- Load whitelist for player
-            GAMEMODE:LoadPlayerWhitelist(ply)
-            
-            -- Load player data
-            GAMEMODE:LoadPlayerData(ply)
-            
             -- Enforce faction role
             GAMEMODE:EnforceFactionRole(ply)
             
@@ -68,41 +62,14 @@ hook.Add("PlayerLoadout", "ProjectSovereign_Loadout", function(ply)
     return true
 end)
 
--- Update playtime on disconnect
-hook.Add("PlayerDisconnected", "ProjectSovereign_Disconnect", function(ply)
+-- Save player data on disconnect
+hook.Add("PlayerDisconnected", "ProjectSovereign_SaveOnDisconnect", function(ply)
     GAMEMODE:Log(string.format("Player disconnecting: %s (%s)", ply:Nick(), ply:SteamID()))
     
-    -- Update playtime
-    if ply.PlayerData and ply.JoinTime then
-        local sessionTime = os.time() - ply.JoinTime
-        ply.PlayerData.playtime = (ply.PlayerData.playtime or 0) + sessionTime
-    end
-    
-    -- Save all player data
+    -- Note: Playtime and death stats are tracked by persistence.lua
+    -- We only need to save the data here
     GAMEMODE:SavePlayerData(ply)
     GAMEMODE:SaveDataStore(ply)
-end)
-
--- Track player join time for playtime calculation
-hook.Add("PlayerInitialSpawn", "ProjectSovereign_TrackJoinTime", function(ply)
-    ply.JoinTime = os.time()
-end)
-
--- Handle player death for stats tracking
-hook.Add("PlayerDeath", "ProjectSovereign_DeathStats", function(victim, inflictor, attacker)
-    if not IsValid(victim) then return end
-    
-    -- Update death count
-    if victim.PlayerData then
-        victim.PlayerData.totalDeaths = (victim.PlayerData.totalDeaths or 0) + 1
-    end
-    
-    -- Update kill count for attacker
-    if IsValid(attacker) and attacker:IsPlayer() and attacker ~= victim then
-        if attacker.PlayerData then
-            attacker.PlayerData.totalKills = (attacker.PlayerData.totalKills or 0) + 1
-        end
-    end
 end)
 
 -- Validate PvP damage based on faction rules
