@@ -83,19 +83,19 @@ end
 
 -- Load configuration files first
 print("Loading configuration...")
-LoadDirectory("project_sovereign/gamemode/config", false)
+LoadDirectory("config", false)
 
 -- Load core systems
 print("Loading core systems...")
-LoadDirectory("project_sovereign/gamemode/core", false)
+LoadDirectory("core", false)
 
 -- Load player systems
 print("Loading player systems...")
-LoadDirectory("project_sovereign/gamemode/player", false)
+LoadDirectory("player", false)
 
 -- Load modules
 print("Loading modules...")
-LoadDirectory("project_sovereign/gamemode/modules", false)
+LoadDirectory("modules", false)
 
 -- Initialize server-side systems
 if SERVER then
